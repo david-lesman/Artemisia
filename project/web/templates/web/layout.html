@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>{% block title %}{% endblock title %}</title>
 
     <link rel="stylesheet" href="{% static 'web/bulma.css' %}">
     <link rel="stylesheet" href="{% static 'web/styles.css' %}">
@@ -15,7 +15,7 @@
 <body>
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-          <a class="navbar-item" href="https://bulma.io">
+          <a class="navbar-item" href="{% url 'index' %}">
             <img src="{% static 'web/logo.svg' %}" width="112" height="28">
           </a>
       
@@ -63,10 +63,10 @@
             <div class="navbar-item">
               <div class="buttons">
                 <a class="button is-primary">
-                  <strong>Sign up</strong>
+                    <strong>Sign up</strong>
                 </a>
-                <a class="button is-light">
-                  Log in
+                <a class="button is-light" href="{% url 'login' %}">
+                    Log in
                 </a>
               </div>
             </div>
