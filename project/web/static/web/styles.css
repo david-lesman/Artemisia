@@ -1,0 +1,8 @@
+nav {
+    background-image: linear-gradient(to top left, #a9d6e5, #bbdde9, #cce4ed, #ddebf0, #edf2f4);
+}
+
+body { 
+    background-image: linear-gradient(to bottom left, #a9d6e5, #bbdde9, #cce4ed, #ddebf0, #edf2f4);
+    height: 1080px;
+}
