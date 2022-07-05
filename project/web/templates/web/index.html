@@ -1,3 +1,5 @@
 {% extends 'web/layout.html' %}
 
 {% block title %}Home{% endblock title %}
+
+{% block body %}<h1>Hello {{ request.user }}</h1>{% endblock body %}
