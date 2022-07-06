@@ -1,3 +1,17 @@
 {% extends 'web/layout.html' %}
 
-{% block title %}Login{% endblock title %}login
+{% block title %}Login{% endblock title %}
+
+{% block body %}
+  <h1>Login</h1>
+
+  <form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    <input autofocus="" class="text-input" type="text" name="username" placeholder="Username: johndoe">
+    <input class="text-input" type="email" name="email" placeholder="Email">
+    <input class="text-input" type="password" name="password" placeholder="Password">
+    <input type="submit" class="btn" value="Log in">
+
+    <p>Don't have an account? <a href="{% url 'register' %}" class="underline">Register here.</a></p>
+    <p>Forgot password? <a href="{% url 'reset_password' %}" class="underline">Reset password.</a></p>
+{% endblock %}
