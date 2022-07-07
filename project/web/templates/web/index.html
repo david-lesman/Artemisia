@@ -1,5 +1,46 @@
 {% extends 'web/layout.html' %}
+{% load static %}
 
 {% block title %}Home{% endblock title %}
 
-{% block body %}<h1>Hello {{ request.user }}</h1>{% endblock body %}
+{% block body %}
+{% comment %} <h1>Hello {{ request.user }}</h1> {% endcomment %}
+    <main>
+        <article>
+            <section class="section is-medium">
+                <div class="columns">
+                    <figure class="hero-banner column is-7">
+                        <img src="{% static 'web/landing-hero-banner.svg' %}" alt="An educator teaching a class of students.">
+                    </figure>
+                    <div class="column">
+                        <h1 class="hero-title red">Educate the children of the future</h1>
+                        <p class="subtitle">Teach kids the meaning of and how to deal with illnesses.</p>
+                        <div class="buttons">
+                            <a class="button btn bg-red white" href="">
+                                <strong>Learn more</strong>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section is-medium bg-beige">
+                <div class="columns">
+                    <div class="column">
+                        <h1 class="hero-title dark-blue">We help you make your kids understand!</h1>
+                        <p class=" bg-dark-blue subtitle">With our educational tools, your child will be able to understand how to deal with or support someone with an illness.</p>
+                        <div class="buttons">
+                            <a class="button btn btn-inverse bg-dark-blue beige" href="">
+                                <strong>Get started</strong>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="columns is-7">
+                        <figure class="about-banner">
+                            <img src="{% static 'web/landing-about-banner.svg' %}" alt="Team spirit.">
+                        </figure>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+{% endblock body %}

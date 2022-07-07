@@ -1,10 +1,42 @@
-nav {
-    background-image: linear-gradient(to top left, #a9d6e5, #bbdde9, #cce4ed, #ddebf0, #edf2f4);
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Rubik&display=swap');
+
+:root {
+    --dark-blue: #4056a1;
+    --light-blue: #c5cbe3;
+    --yellow: #d79922;
+    --beige: #efe2ba;
+    --red: #f13c20;
+    --white: rgb(241, 240, 235);
+    --ff-poppins: font-family: 'Poppins', sans-serif;
+    --ff-rubik: font-family: "Rubik", sans-serif;
 }
 
+.dark-blue { color: var(--dark-blue); }
+
+.light-blue { color: var(--light-blue); }
+
+.yellow { color: var(--yellow); }
+
+.beige { color: var(--beige); }
+
+.red { color: var(--red); }
+
+.white { color: var(--white) };
+
+.bg-dark-blue { background-color: var(--dark-blue); }
+
+.bg-light-blue { background-color: var(--light-blue); }
+
+.bg-yellow { background-color: var(--yellow); }
+
+.bg-beige { background-color: var(--beige); }
+
+.bg-red { background-color: var(--red); }
+
+.bg-white { background-color: var(--white); }
+
 body { 
-    background-image: linear-gradient(to bottom left, #a9d6e5, #bbdde9, #cce4ed, #ddebf0, #edf2f4);
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .login-body {
@@ -15,3 +47,46 @@ body {
 .login-body::-webkit-scrollbar {
     display: none;
 }
+
+.login-banner img { height: 80%; }
+
+.box form input[type=submit] { font-family: var(--ff-rubik); font-weight: 700;}
+
+/* Landing Page */
+
+.hero-banner { margin-bottom: 30px; }
+
+.hero-banner img { width: 100%; }
+
+.hero-title { 
+    font-family: var(--ff-poppins); 
+    line-height: 1.4;
+    font-weight: 700;
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.btn { transition-duration: .5s; }
+
+.btn:is(:hover, :focus) {
+    background: var(--white);
+    color: var(--red);
+    border-color: var(--red);
+    box-shadow: 3px 5px;
+    transition-duration: .5s;
+}
+.button:focus:not(:active) { box-shadow: 0 0 0 0; }
+
+.about-banner { margin-bottom: 30px; }
+
+.about-banner img { width: 100%; }
+
+.btn-inverse { background-color: var(--dark-blue); }
+
+.btn-inverse:is(:hover, :focus) { 
+    box-shadow: -3px 5px; 
+    color: var(--dark-blue);
+    border-color: var(--dark-blue);
+    background: var(--beige);
+}
+

@@ -1,60 +1,60 @@
 {% extends 'web/layout.html' %}
+{% load static %}
 
 {% block title %}Register{% endblock title %}
 
-{% block body_classes %}class="login-body"{% endblock body_classes %}
+{% block body_classes %}class="login-body bg-white"{% endblock body_classes %}
 
 {% block body %}
-
-    <section class="hero is-fullheight-with-navbar">
-        <div class="hero-body">
-            <div class="container has-text-centered">
-                <div class="column is-4 is-offset-4">
-                    <div class="box">
-                        <p class="subtitle is-4">Welcome to Artemisia</p>
-                        {% if message %}
-                            <h2 class="has-text-danger">{{ message }}</h2>
-                        {% endif %}
-                        <br />
-                        <form action="{% url 'register' %}" method="post">
-                        {% csrf_token %}
-                        <div class="field">
-                            <p class="control has-icons-left">
-                                <input required class="input is-medium" type="text" name="username" placeholder="Username" />
-                                <span class="icon is-small is-left"><i class="fa fa-user"></i></span>
-                            </p>
-                        </div>
-                        <div class="field">
-                            <p class="control has-icons-left">
-                            <input required class="input is-medium" type="email" name="email" placeholder="Email" />
-                            <span class="icon is-medium is-left">
-                                <i class="fas fa-envelope"></i>
-                            </span>
-                            </p>
-                        </div>
-                        <div class="field">
-                            <p class="control has-icons-left">
-                            <input required class="input is-medium" type="password" name="password" placeholder="Password" />
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-lock"></i>
-                            </span>
-                            </p>
-                        </div>
-                        <div class="field">
-                            <p class="control has-icons-left">
-                                <input required class="input is-medium" type="password" name="confirmation" placeholder="Confirm Password" />
-                                <span class="icon is-small is-left">
-                                <i class="fas fa-lock"></i>
-                                </span>
-                            </p>
-                        </div>
-                        <input type="submit" value="Sign up" class="button is-block is-info is-large is-fullwidth">
-                        </form>
-                        Already have an account? <a href="{% url 'login' %}">Log In here.</a>
-                    </div>
+    <section class="section is-medium">
+      <div class="columns">
+        <div class="column">
+          <div class="box has-text-centered">
+              <p class="subtitle is-4">Welcome to Artemisia</p>
+              {% if message %}
+                <h2 class="red">{{ message }}</h2>
+              {% endif %}
+              <br />
+              <form action="{% url 'register' %}" method="post">
+                {% csrf_token %}
+                <div class="field">
+                  <p class="control has-icons-left">
+                    <input required class="input is-medium" type="text" name="username" placeholder="Username" />
+                    <span class="icon is-small is-left"><i class="fa fa-user"></i></span>
+                  </p>
                 </div>
-            </div>
+                <div class="field">
+                  <p class="control has-icons-left">
+                    <input required class="input is-medium" type="email" name="email" placeholder="Email" />
+                    <span class="icon is-medium is-left">
+                      <i class="fas fa-envelope"></i>
+                    </span>
+                  </p>
+                </div>
+                <div class="field">
+                  <p class="control has-icons-left">
+                    <input required class="input is-medium" type="password" name="password" placeholder="Password" />
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-lock"></i>
+                    </span>
+                  </p>
+                </div>
+                <div class="field">
+                  <p class="control has-icons-left">
+                    <input required class="input is-medium" type="password" name="confirmation" placeholder="Confirm Password" />
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-lock"></i>
+                    </span>
+                  </p>
+                </div>
+                <input type="submit" value="Sign up" class="button is-block bg-yellow white is-large is-fullwidth">
+              </form>
+            Already have an account? <a href="{% url 'login' %}">Log In here.</a>
+          </div>
         </div>
+        <figure class="hero-banner column">
+          <img src="{% static 'web/register-banner.svg' %}" alt="People being happy.">
+        </figure>
+      </div>
     </section>
-
 {% endblock %}

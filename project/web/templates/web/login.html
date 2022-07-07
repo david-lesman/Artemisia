@@ -1,20 +1,18 @@
 {% extends 'web/layout.html' %}
+{% load static %}
 
 {% block title %}Login{% endblock title %}
 
-{% block body_classes %}class="login-body"{% endblock body_classes %}
+{% block body_classes %}class="login-body bg-white"{% endblock body_classes %}
 
 {% block body %}
-  <h1>Login</h1>
-
-  <section class="hero is-fullheight-with-navbar">
-    <div class="hero-body">
-      <div class="container has-text-centered">
-        <div class="column is-4 is-offset-4">
-          <div class="box">
+  <section class="section is-medium">
+      <div class="columns">
+        <div class="column">
+          <div class="box has-text-centered">
             <p class="subtitle is-4">Welcome to Artemisia</p>
               {% if message %}
-                <h2 class="has-text-danger">{{ message }}</h2>
+                <h2 class="red">{{ message }}</h2>
               {% endif %}
               <br />
               <form action="{% url 'login' %}" method="post">
@@ -41,13 +39,15 @@
                   </span>
                   </p>
                 </div>
-                <input type="submit" value="Log in" class="button is-block is-info is-large is-fullwidth">
+                <input type="submit" value="Log in" class="button is-block bg-light-blue is-large is-fullwidth">
               </form>
               <p>Don't have an account? <a href="{% url 'register' %}" class="underline">Register here.</a></p>
               <p>Forgot password? <a href="{% url 'reset_password' %}" class="underline">Reset password.</a></p>
             </div>
           </div>
+          <figure class="login-banner column">
+            <img src="{% static 'web/login-banner.svg' %}" alt="A woman accessing a webpage.">
+        </figure>
         </div>
-    </div>
   </section>
 {% endblock %}
