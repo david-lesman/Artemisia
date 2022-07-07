@@ -2,16 +2,52 @@
 
 {% block title %}Login{% endblock title %}
 
+{% block body_classes %}class="login-body"{% endblock body_classes %}
+
 {% block body %}
   <h1>Login</h1>
 
-  <form action="{% url 'login' %}" method="post">
-    {% csrf_token %}
-    <input autofocus="" class="text-input" type="text" name="username" placeholder="Username: johndoe">
-    <input class="text-input" type="email" name="email" placeholder="Email">
-    <input class="text-input" type="password" name="password" placeholder="Password">
-    <input type="submit" class="btn" value="Log in">
-
-    <p>Don't have an account? <a href="{% url 'register' %}" class="underline">Register here.</a></p>
-    <p>Forgot password? <a href="{% url 'reset_password' %}" class="underline">Reset password.</a></p>
+  <section class="hero is-fullheight-with-navbar">
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <div class="column is-4 is-offset-4">
+          <div class="box">
+            <p class="subtitle is-4">Welcome to Artemisia</p>
+              {% if message %}
+                <h2 class="has-text-danger">{{ message }}</h2>
+              {% endif %}
+              <br />
+              <form action="{% url 'login' %}" method="post">
+                {% csrf_token %}
+                <div class="field">
+                  <p class="control has-icons-left">
+                    <input required class="input is-medium" type="text" name="username" placeholder="Username" />
+                    <span class="icon is-small is-left"><i class="fa fa-user"></i></span>
+                  </p>
+                </div>
+                <div class="field">
+                  <p class="control has-icons-left">
+                  <input required class="input is-medium" type="email" name="email" placeholder="Email" />
+                  <span class="icon is-medium is-left">
+                    <i class="fas fa-envelope"></i>
+                  </span>
+                  </p>
+                </div>
+                <div class="field">
+                  <p class="control has-icons-left">
+                  <input required class="input is-medium" type="password" name="password" placeholder="Password" />
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-lock"></i>
+                  </span>
+                  </p>
+                </div>
+                <input type="submit" value="Log in" class="button is-block is-info is-large is-fullwidth">
+              </form>
+              <p>Don't have an account? <a href="{% url 'register' %}" class="underline">Register here.</a></p>
+              <p>Forgot password? <a href="{% url 'reset_password' %}" class="underline">Reset password.</a></p>
+            </div>
+          </div>
+        </div>
+    </div>
+  </section>
 {% endblock %}

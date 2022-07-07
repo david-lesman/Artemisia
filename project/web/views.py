@@ -43,8 +43,26 @@ def logout_view(request):
 
 def register(request):
     if request.method == "POST":
+        import re
+
+        EMAIL_REGEX = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
         username = request.POST["username"]
+
+        # Ensure username, display name and location are long enough
+        if len(username) < 3:
+            return render(
+                request,
+                "web/register.html",
+                {"message": "Username must be at least 3 characters long."},
+            )
+
         email = request.POST["email"]
+
+        # Ensure valid email address
+        if email and not re.match(EMAIL_REGEX, email):
+            return render(
+                request, "web/register.html", {"message": "Not a valid email address."}
+            )
 
         # Ensure password matches confirmation
         password = request.POST["password"]
@@ -54,15 +72,24 @@ def register(request):
                 request, "web/register.html", {"message": "Passwords must match."}
             )
 
-        # Attempt to create new user
-        try:
-            user = User.objects.create_user(username, email, password)
-            user.save()
-        except IntegrityError:
+        if len(password) < 8:
             return render(
                 request,
                 "web/register.html",
-                {"message": "Username already taken."},
+                {"message": "Password must contain at least 8 characters."},
+            )
+
+        # Attempt to create new user
+        try:
+            user = User.objects.create_user(
+                username,
+                email,
+                password,
+            )
+            user.save()
+        except IntegrityError:
+            return render(
+                request, "web/register.html", {"message": "Username already taken."}
             )
         login(request, user)
         return HttpResponseRedirect(reverse("index"))

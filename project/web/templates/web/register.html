@@ -2,34 +2,59 @@
 
 {% block title %}Register{% endblock title %}
 
+{% block body_classes %}class="login-body"{% endblock body_classes %}
+
 {% block body %}
 
-    <h2 class="text-center text-light">Register</h2>
-    {% if message %}
-        <div>{{ message }}</div>
-    {% endif %}
-    <div class="container text-light text-center">
-        <div class="row justify-content-center">
-            <div class="col-sm-4 listing-card">
-                <form action="{% url 'register' %}" method="post">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <input class="form-control" autofocus type="text" name="username" placeholder="Username">
+    <section class="hero is-fullheight-with-navbar">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <div class="column is-4 is-offset-4">
+                    <div class="box">
+                        <p class="subtitle is-4">Welcome to Artemisia</p>
+                        {% if message %}
+                            <h2 class="has-text-danger">{{ message }}</h2>
+                        {% endif %}
+                        <br />
+                        <form action="{% url 'register' %}" method="post">
+                        {% csrf_token %}
+                        <div class="field">
+                            <p class="control has-icons-left">
+                                <input required class="input is-medium" type="text" name="username" placeholder="Username" />
+                                <span class="icon is-small is-left"><i class="fa fa-user"></i></span>
+                            </p>
+                        </div>
+                        <div class="field">
+                            <p class="control has-icons-left">
+                            <input required class="input is-medium" type="email" name="email" placeholder="Email" />
+                            <span class="icon is-medium is-left">
+                                <i class="fas fa-envelope"></i>
+                            </span>
+                            </p>
+                        </div>
+                        <div class="field">
+                            <p class="control has-icons-left">
+                            <input required class="input is-medium" type="password" name="password" placeholder="Password" />
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                            </p>
+                        </div>
+                        <div class="field">
+                            <p class="control has-icons-left">
+                                <input required class="input is-medium" type="password" name="confirmation" placeholder="Confirm Password" />
+                                <span class="icon is-small is-left">
+                                <i class="fas fa-lock"></i>
+                                </span>
+                            </p>
+                        </div>
+                        <input type="submit" value="Sign up" class="button is-block is-info is-large is-fullwidth">
+                        </form>
+                        Already have an account? <a href="{% url 'login' %}">Log In here.</a>
                     </div>
-                    <div class="form-group">
-                        <input class="form-control" type="email" name="email" placeholder="Email Address">
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control" type="password" name="password" placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control" type="password" name="confirmation" placeholder="Confirm Password">
-                    </div>
-                    <input class="btn mbutton mblue" type="submit" value="Register">
-                </form>
+                </div>
             </div>
         </div>
-        Already have an account? <a href="{% url 'login' %}">Log In here.</a>
-    </div>
+    </section>
 
 {% endblock %}

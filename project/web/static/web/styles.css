@@ -4,5 +4,14 @@ nav {
 
 body { 
     background-image: linear-gradient(to bottom left, #a9d6e5, #bbdde9, #cce4ed, #ddebf0, #edf2f4);
-    height: 1080px;
+    height: 100vh;
+}
+
+.login-body {
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+}
+
+.login-body::-webkit-scrollbar {
+    display: none;
 }

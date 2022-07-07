@@ -8,11 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock title %}</title>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css" />
     <link rel="stylesheet" href="{% static 'web/bulma.css' %}">
     <link rel="stylesheet" href="{% static 'web/styles.css' %}">
     <script src="{% static 'web/nav.js' %}"></script>
 </head>
-<body>
+<body {% block body_classes %}{% endblock body_classes %}>
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
           <a class="navbar-item" href="{% url 'index' %}">
