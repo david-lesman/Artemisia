@@ -9,8 +9,10 @@
     <title>{% block title %}{% endblock title %}</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
     <link rel="stylesheet" href="{% static 'web/bulma.css' %}">
     <link rel="stylesheet" href="{% static 'web/styles.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'web/favicon.ico' %}"/>
     <script src="{% static 'web/nav.js' %}"></script>
 </head>
 <body {% block body_classes %}class="bg-white"{% endblock body_classes %}>
@@ -32,7 +34,7 @@
             <div class="navbar-item">
               <div class="buttons">
                 {% if user.is_authenticated %}
-                  <a class="button is-light" href="{% url 'logout' %}">
+                  <a class="button btn bg-beige red" href="{% url 'logout' %}">
                     <strong>Log out</strong>
                   </a>
                 {% else %}

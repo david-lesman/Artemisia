@@ -9,6 +9,9 @@ from web.models import User
 
 # Create your views here.
 def index(request):
+    if request.user.is_authenticated:
+        return render(request, "web/dashboard.html")
+
     return render(request, "web/index.html")
 
 def lesson(request):

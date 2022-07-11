@@ -7,47 +7,47 @@
 
 {% block body %}
   <section class="section is-medium">
-      <div class="columns">
-        <div class="column">
-          <div class="box has-text-centered">
-            <p class="subtitle is-4">Welcome to Artemisia</p>
-              {% if message %}
-                <h2 class="red">{{ message }}</h2>
-              {% endif %}
-              <br />
-              <form action="{% url 'login' %}" method="post">
-                {% csrf_token %}
-                <div class="field">
-                  <p class="control has-icons-left">
-                    <input required class="input is-medium" type="text" name="username" placeholder="Username" />
-                    <span class="icon is-small is-left"><i class="fa fa-user"></i></span>
-                  </p>
-                </div>
-                <div class="field">
-                  <p class="control has-icons-left">
-                  <input required class="input is-medium" type="email" name="email" placeholder="Email" />
-                  <span class="icon is-medium is-left">
-                    <i class="fas fa-envelope"></i>
-                  </span>
-                  </p>
-                </div>
-                <div class="field">
-                  <p class="control has-icons-left">
-                  <input required class="input is-medium" type="password" name="password" placeholder="Password" />
-                  <span class="icon is-small is-left">
-                    <i class="fas fa-lock"></i>
-                  </span>
-                  </p>
-                </div>
-                <input type="submit" value="Log in" class="button is-block bg-light-blue is-large is-fullwidth">
-              </form>
-              <p>Don't have an account? <a href="{% url 'register' %}" class="underline">Register here.</a></p>
-              <p>Forgot password? <a href="{% url 'reset_password' %}" class="underline">Reset password.</a></p>
+    <div class="columns">
+      <div class="column">
+        <div class="box has-text-centered">
+          <p class="subtitle is-4">Welcome to Artemisia</p>
+          {% if message %}
+            <h2 class="red">{{ message }}</h2>
+          {% endif %}
+          <br />
+          <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            <div class="field">
+              <p class="control has-icons-left">
+                <input required class="input is-medium" type="text" name="username" placeholder="Username" />
+                <span class="icon is-small is-left"><i class="fas fa-user"></i></span>
+              </p>
             </div>
-          </div>
-          <figure class="login-banner column">
-            <img src="{% static 'web/login-banner.svg' %}" alt="A woman accessing a webpage.">
-        </figure>
+            <div class="field">
+              <p class="control has-icons-left">
+              <input required class="input is-medium" type="email" name="email" placeholder="Email" />
+              <span class="icon is-medium is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+              </p>
+            </div>
+            <div class="field">
+              <p class="control has-icons-left">
+              <input required class="input is-medium" type="password" name="password" placeholder="Password" />
+              <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+              </span>
+              </p>
+            </div>
+            <input type="submit" value="Log in" class="button is-block bg-light-blue is-large is-fullwidth">
+          </form>
+          <p>Don't have an account? <a href="{% url 'register' %}" class="underline">Register here.</a></p>
+          <p>Forgot password? <a href="{% url 'reset_password' %}" class="underline">Reset password.</a></p>
         </div>
+      </div>
+      <figure class="login-banner column">
+        <img src="{% static 'web/login-banner.svg' %}" alt="A woman accessing a webpage.">
+      </figure>
+    </div>
   </section>
 {% endblock %}

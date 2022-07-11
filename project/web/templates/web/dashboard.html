@@ -1,0 +1,93 @@
+{% extends 'web/layout.html' %}
+
+{% block title %}Dashboard{% endblock title %}
+
+{% block body %}
+  <main class="container">
+    <div class="column is-half is-offset-one-quarter">
+      {% comment %}For lesson in user.lessons{% endcomment %}
+      <nav class="level">
+        <div class="level-item has-text-centered">
+          <div class="lesson-card completed">
+            <p class="heading">Lesson 1</p>
+            <figure class="image is64x64">
+              <span class="icon is-large"><i class="fas fa-question fa-2x"></i></span>
+            </figure>
+          </div>
+        </div>
+      </nav>
+      <nav class="level">
+        <div class="level-item has-text-centered">
+          <div class="lesson-card">
+            <p class="heading">Lesson 2</p>
+            <figure class="image is64x64">
+              <span class="icon is-large"><i class="fas fa-syringe fa-2x"></i></span>
+            </figure>
+          </div>
+        </div>
+        <div class="level-item has-text-centered">
+          <div class="lesson-card">
+            <p class="heading">Lesson 3</p>
+            <figure class="image is64x64">
+              <span class="icon is-large"><i class="fas fa-user-tag fa-2x"></i></span>
+            </figure>
+          </div>
+        </div>
+      </nav>
+      <nav class="level">
+        <div class="level-item has-text-centered">
+          <div class="lesson-card level-up test">
+            <p class="heading">Test</p>
+            <figure class="image is64x64">
+              {% comment %}if user.lessons.part_1.locked{% endcomment %}
+              <span class="icon is-large"><i class="fas fa-lock-open fa-2x"></i></span>
+            </figure>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <hr class="dashed">
+    <div class="column is-half is-offset-one-quarter locked">
+      {% comment %} if user.lessons.#.locked -> gray out{% endcomment %}
+      <nav class="level">
+        <div class="level-item has-text-centered">
+          <div class="lesson-card bg-beige">
+            <p class="heading">Lesson 4</p>
+            <figure class="image is64x64">
+              <span class="icon is-large"><i class="fas fa-medkit fa-2x"></i></span>
+            </figure>
+          </div>
+        </div>
+        <div class="level-item has-text-centered">
+          <div class="lesson-card bg-beige">
+            <p class="heading">Lesson 5</p>
+            <figure class="image is64x64">
+              <span class="icon is-large"><i class="fas fa-universal-access fa-2x"></i></span>
+            </figure>
+          </div>
+        </div>
+      </nav>
+      <nav class="level">
+        <div class="level-item has-text-centered">
+          <div class="lesson-card bg-beige">
+            <p class="heading">Lesson 6</p>
+            <figure class="image is64x64">
+              <span class="icon is-large"><i class="fas fa-users fa-2x"></i></span>
+            </figure>
+          </div>
+        </div>
+      </nav>
+      <nav class="level">
+        <div class="level-item has-text-centered">
+          <div class="lesson-card level-up bg-beige dark-blue">
+            <p class="heading">Test</p>
+            <figure class="image is64x64">
+              {% comment %}if user.lessons.part_1.locked{% endcomment %}
+              <span class="icon is-large"><i class="fas fa-lock fa-2x"></i></span>
+            </figure>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </main>
+{% endblock body %}
