@@ -11,6 +11,10 @@ from web.models import User
 def index(request):
     return render(request, "web/index.html")
 
+def lesson(request):
+    return render(request, "web/lesson.html")
+
+
 
 def login_view(request):
     if request.method == "POST":

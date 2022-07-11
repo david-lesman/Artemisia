@@ -37,4 +37,5 @@ urlpatterns = [
         ),
         name="password_reset_complete",
     ),
+    path("lesson/", views.lesson, name="lesson"),
 ]
