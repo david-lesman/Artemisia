@@ -86,10 +86,29 @@ body {
     text-transform: none;
 }
 
+.lesson-txt {
+    line-height: 2.5rem;
+}
+
+@media only screen and (hover: none) and (pointer: coarse) {
+    .lesson-txt {
+        line-height: 2rem;
+        font-size: 1.5rem;
+    }
+}
+
 .dashed {
     border: 0;
     border-top: 2px dashed var(--dark-blue);
     background: none;
+}
+
+.lesson-banner {
+    max-height: 20rem;
+}
+
+.lesson-banner img {
+    max-height: 100%;
 }
 
 .dots {

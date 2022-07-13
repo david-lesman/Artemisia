@@ -18,25 +18,29 @@
           </a>
         </div>
       </nav>
-      <nav class="level">
+      <nav class="level {% if 1 not in lessons %}locked{% endif %}">
         <div class="level-item has-text-centered">
-          <div class="lesson-card {% if 2 in lessons %}completed{% endif %}">
-            <p class="heading">Lesson 2</p>
-            <figure class="image is64x64">
-              <span class="icon is-large"><i class="fas fa-syringe fa-2x"></i></span>
-            </figure>
-          </div>
+          <a {% if 1 in lessons %}href="{% url 'lesson' 2 %}"{% endif %}>
+            <div class="lesson-card {% if 2 in lessons %}completed{% endif %}">
+              <p class="heading">Lesson 2</p>
+              <figure class="image is64x64">
+                <span class="icon is-large"><i class="fas fa-syringe fa-2x"></i></span>
+              </figure>
+            </div>
+          </a>
         </div>
         <div class="level-item has-text-centered">
-          <div class="lesson-card {% if 3 in lessons %}completed{% endif %}">
-            <p class="heading">Lesson 3</p>
-            <figure class="image is64x64">
-              <span class="icon is-large"><i class="fas fa-user-tag fa-2x"></i></span>
-            </figure>
-          </div>
+          <a {% if 1 in lessons %}href="{% url 'lesson' 3 %}"{% endif %}>
+            <div class="lesson-card {% if 3 in lessons %}completed{% endif %}">
+              <p class="heading">Lesson 3</p>
+              <figure class="image is64x64">
+                <span class="icon is-large"><i class="fas fa-user-tag fa-2x"></i></span>
+              </figure>
+            </div>
+          </a>
         </div>
       </nav>
-      <nav class="level">
+      <nav class="level {% if 2 not in lessons or 3 not in lessons %}locked{% endif %}">
         <div class="level-item has-text-centered">
           <div class="lesson-card level-up test">
             <p class="heading">Test</p>
@@ -53,7 +57,7 @@
       {% comment %} if user.lessons.#.locked -> gray out{% endcomment %}
       <nav class="level">
         <div class="level-item has-text-centered">
-          <div class="lesson-card {% if 5 in lessons %}completed{% elif 4 not in lessons %}bg-beige{% endif %}">
+          <div class="lesson-card {% if 5 in lessons %}completed{% endif %}">
             <p class="heading">Lesson 5</p>
             <figure class="image is64x64">
               <span class="icon is-large"><i class="fas fa-medkit fa-2x"></i></span>
@@ -61,7 +65,7 @@
           </div>
         </div>
         <div class="level-item has-text-centered">
-          <div class="lesson-card {% if 6 in lessons %}completed{% elif 4 not in lessonsse %}bg-beige{% endif %}">
+          <div class="lesson-card {% if 6 in lessons %}completed{% endif %}">
             <p class="heading">Lesson 6</p>
             <figure class="image is64x64">
               <span class="icon is-large"><i class="fas fa-universal-access fa-2x"></i></span>
@@ -71,7 +75,7 @@
       </nav>
       <nav class="level">
         <div class="level-item has-text-centered">
-          <div class="lesson-card {% if 7 in lessons %}completed{% elif 4 not in lessons %}bg-beige{% endif %}">
+          <div class="lesson-card {% if 7 in lessons %}completed{% endif %}">
             <p class="heading">Lesson 7</p>
             <figure class="image is64x64">
               <span class="icon is-large"><i class="fas fa-users fa-2x"></i></span>
@@ -81,7 +85,7 @@
       </nav>
       <nav class="level">
         <div class="level-item has-text-centered">
-          <div class="lesson-card {% if 4 not in lessons %}bg-beige{% endif %} test">
+          <div class="lesson-card test">
             <p class="heading">Test</p>
             <figure class="image is64x64">
               {% comment %}if user.lessons.part_1.locked{% endcomment %}

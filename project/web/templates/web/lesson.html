@@ -4,58 +4,40 @@
 {% block title %}Lesson{% endblock title %}
 
 {% block body %}
-  <main class="container">
-    <p class="title has-text-centered">{{ lesson.title }}</p>
-    <p class="title is-4 has-text-centered">Lesson {{ lesson.pk }}</p>
-    <div class="tile is-ancestor">
-      <div class="tile is-2 is-vertical is-parent">
-        <div class="tile is-child box bg-light-blue">
-          <p class="menu-label">Part 1</p>
-          <ul class="menu-list">
-            <li><a href="{% url 'lesson' lesson.id %}">Lesson 1</a></li>
-            <li><a>Lesson 2</a></li>
-            <li><a>Lesson 3</a></li>
-            <li><a>Test 1</a></li>
-          </ul>
-          <p class="menu-label">Part 2</p>
-          <ul class="menu-list">
-            <li><a>Lesson 1</a></li>
-            <li><a>Lesson 2</a></li>
-            <li><a>Lesson 3</a></li>
-            <li><a>Test 1</a></li>
-          </ul>
+  <main>
+    <section class="section">
+      <div class="columns">
+        <figure class="lesson-banner column is-4">
+          <img src="{% static lesson.image %}" alt="An educator teaching a class of students.">
+        </figure>
+        <div class="column">
+          <h1 class="hero-title red">{{ lesson.title }}</h1>
+          <p class="subtitle"><strong>Lesson {{ lesson.id }}</strong> </p>
+          <p class="subtitle lesson-txt">{{ lesson.introduction }}</p>
         </div>
       </div>
-      <div class="tile is-parent is-vertical is-6">
-        <div class="tile is-child">
-          <div class="box bg-beige has-text-left rubik">
-            <p>{{ lesson.introduction }}</p>
-          </div>
+    </section>
+    {% for x in small_text %}
+    <section class="section {% if forloop.counter0|divisibleby:2 %}bg-beige{% endif %}">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <p class="subtitle lesson-txt">{{ x }}</p>
         </div>
-        {% for line in small_text %}
-          <div class="tile is-child has-text-centered">
-            <div class="box bg-beige has-text-left">
-              <p>{{ line }}</p>
+      </div>
+    </section>
+    {% endfor %}
+    <footer class="section">
+      <div class="columns is-centered">
+        <div class="column is-4">
+          <form method="post" action="{% url 'lesson' lesson.id %}">
+            <div class="field">
+              {% csrf_token %}
             </div>
-          </div>
-        {% endfor %}
-      </div>
-      <div class="tile is-parent">
-        <div class="is-child">
-          <figure class="hero-banner">
-            <img src="{% static 'web/blood-sugar-level.svg' %}" alt="Person checking their blood sugar." >
-          </figure>
+            <input type="submit" class="button is-block bg-light-blue completed is-large is-fullwidth" value="Complete Lesson">
+          </form>
         </div>
       </div>
-    </div>
-    <form method="post" action="{% url 'lesson' lesson.id %}">
-      <div class="field">
-        {% csrf_token %}
-        <p>Score: 4/5</p>
-        <input type="hidden" name="score" value="4"/>
-      </div>
-      <input type="submit" class="button is-block bg-light-blue completed is-large is-fullwidth" value="Complete Lesson">
-    </form>
+    </footer>
   </main>
 
 {% endblock body %}

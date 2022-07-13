@@ -2,7 +2,7 @@ from django.db import IntegrityError
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 from django.urls import reverse
 
 from web.models import User, Lesson
@@ -12,7 +12,6 @@ def index(request):
     if request.user.is_authenticated:
         lessons = request.user.completed.all()
         lessons = [i.id for i in lessons]
-        lessons = [1, 2, 3, 4]
         return render(request, "web/dashboard.html", {"lessons": lessons})
 
     return render(request, "web/index.html")
@@ -23,10 +22,13 @@ def lesson(request, lesson_id):
     if request.method == "POST":
         # Check if score on quiz is good
         lesson = Lesson.objects.get(pk=lesson_id)
-        score = int(request.POST["score"])
-        if score >= lesson.required_score:
+        if request.POST.get("score"):
+            score = int(request.POST["score"])
+            if score >= lesson.required_score:
+                lesson.completed.add(request.user)
+        else:
             lesson.completed.add(request.user)
-            return HttpResponseRedirect(reverse("index"))
+        return HttpResponseRedirect(reverse("index"))
 
     lesson = Lesson.objects.get(pk=lesson_id)
     chopped_text = [i.strip() for i in lesson.main_text.split("@")]  # @ is seperator
