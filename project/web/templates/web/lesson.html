@@ -4,53 +4,58 @@
 {% block title %}Lesson{% endblock title %}
 
 {% block body %}
-    <main>
-        <div class="is-widescreen">
-            <div class="columns">
-                <aside id="main-sidebar" class="column m-6 box bg-light-blue">
-                    <p class="menu-label">
-                    Part 1
-                    </p>
-                    <ul class="menu-list">
-                    <li><a href="{% url 'lesson' %}">Lesson 1</a></li>
-                    <li><a>Lesson 2</a></li>
-                    <li><a>Lesson 3</a></li>
-                    <li><a>Test 1</a></li>
-                    </ul>
-                    <p class="menu-label">
-                    Part 2
-                    </p>
-                    <ul class="menu-list">
-                        <li><a>Lesson 1</a></li>
-                        <li><a>Lesson 2</a></li>
-                        <li><a>Lesson 3</a></li>
-                        <li><a>Test 1</a></li>
-                    </ul>
-                </aside>
-                <div class="column is-four-fifths is-align-content-center">
-                    <div id="editorjs" class="content">
-                        <p class="title has-text-centered">Diabetes</p>
-                        <section class="section is-medium has-text-centered p-0 mx-1">
-                            <p class="subtitle is-4">Lesson 1</p>
-                            <div class="columns">
-                                <div class="column is-5">
-                                    <div class="box bg-beige has-text-left">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                    </div>
-                                    <div class="box bg-beige has-text-left">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                    </div>
-                                </div>
-                                <div class="column">
-                                    <figure class="hero-banner column is-8">
-                                        <img src="{% static 'web/blood-sugar-level.svg' %}" alt="Person checking their blood sugar." >
-                                    </figure>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-                </div>
+  <main class="container">
+    <p class="title has-text-centered">{{ lesson.title }}</p>
+    <p class="title is-4 has-text-centered">Lesson {{ lesson.pk }}</p>
+    <div class="tile is-ancestor">
+      <div class="tile is-2 is-vertical is-parent">
+        <div class="tile is-child box bg-light-blue">
+          <p class="menu-label">Part 1</p>
+          <ul class="menu-list">
+            <li><a href="{% url 'lesson' lesson.id %}">Lesson 1</a></li>
+            <li><a>Lesson 2</a></li>
+            <li><a>Lesson 3</a></li>
+            <li><a>Test 1</a></li>
+          </ul>
+          <p class="menu-label">Part 2</p>
+          <ul class="menu-list">
+            <li><a>Lesson 1</a></li>
+            <li><a>Lesson 2</a></li>
+            <li><a>Lesson 3</a></li>
+            <li><a>Test 1</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="tile is-parent is-vertical is-6">
+        <div class="tile is-child">
+          <div class="box bg-beige has-text-left rubik">
+            <p>{{ lesson.introduction }}</p>
+          </div>
+        </div>
+        {% for line in small_text %}
+          <div class="tile is-child has-text-centered">
+            <div class="box bg-beige has-text-left">
+              <p>{{ line }}</p>
             </div>
-    </main>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="tile is-parent">
+        <div class="is-child">
+          <figure class="hero-banner">
+            <img src="{% static 'web/blood-sugar-level.svg' %}" alt="Person checking their blood sugar." >
+          </figure>
+        </div>
+      </div>
+    </div>
+    <form method="post" action="{% url 'lesson' lesson.id %}">
+      <div class="field">
+        {% csrf_token %}
+        <p>Score: 4/5</p>
+        <input type="hidden" name="score" value="4"/>
+      </div>
+      <input type="submit" class="button is-block bg-light-blue completed is-large is-fullwidth" value="Complete Lesson">
+    </form>
+  </main>
 
 {% endblock body %}

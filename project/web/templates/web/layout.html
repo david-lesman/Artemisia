@@ -34,11 +34,16 @@
             <div class="navbar-item">
               <div class="buttons">
                 {% if user.is_authenticated %}
+                  {% if user.is_superuser %}
+                    <a class="button bg-yellow white" href={% url 'admin:index' %}>
+                      <strong>Admin Panel</strong>
+                    </a>
+                  {% endif %}
                   <a class="button btn bg-beige red" href="{% url 'logout' %}">
                     <strong>Log out</strong>
                   </a>
                 {% else %}
-                  <a class="button bg-yellow has-text-white" href="{% url 'register' %}">
+                  <a class="button bg-yellow white" href="{% url 'register' %}">
                       <strong>Sign up</strong>
                   </a>
                   <a class="button bg-light-blue dark-blue" href="{% url 'login' %}">

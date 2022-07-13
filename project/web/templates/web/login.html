@@ -39,6 +39,7 @@
               </span>
               </p>
             </div>
+            <input type="hidden" name="next" value="{{ request.GET.next }}" />
             <input type="submit" value="Log in" class="button is-block bg-light-blue is-large is-fullwidth">
           </form>
           <p>Don't have an account? <a href="{% url 'register' %}" class="underline">Register here.</a></p>

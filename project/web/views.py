@@ -2,21 +2,37 @@ from django.db import IntegrityError
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.urls import reverse
 
-from web.models import User
+from web.models import User, Lesson
 
 # Create your views here.
 def index(request):
     if request.user.is_authenticated:
-        return render(request, "web/dashboard.html")
+        lessons = request.user.completed.all()
+        lessons = [i.id for i in lessons]
+        lessons = [1, 2, 3, 4]
+        return render(request, "web/dashboard.html", {"lessons": lessons})
 
     return render(request, "web/index.html")
 
-def lesson(request):
-    return render(request, "web/lesson.html")
 
+@login_required(login_url="login")
+def lesson(request, lesson_id):
+    if request.method == "POST":
+        # Check if score on quiz is good
+        lesson = Lesson.objects.get(pk=lesson_id)
+        score = int(request.POST["score"])
+        if score >= lesson.required_score:
+            lesson.completed.add(request.user)
+            return HttpResponseRedirect(reverse("index"))
+
+    lesson = Lesson.objects.get(pk=lesson_id)
+    chopped_text = [i.strip() for i in lesson.main_text.split("@")]  # @ is seperator
+    return render(
+        request, "web/lesson.html", {"lesson": lesson, "small_text": chopped_text}
+    )
 
 
 def login_view(request):
@@ -31,7 +47,7 @@ def login_view(request):
         # Check if authentication successful
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect(reverse("index"))
+            return redirect(request.POST.get("next", ""))
         else:
             return render(
                 request,
@@ -42,7 +58,7 @@ def login_view(request):
         return render(request, "web/login.html")
 
 
-@login_required(login_url="web/login.html")
+@login_required(login_url="login")
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("index"))

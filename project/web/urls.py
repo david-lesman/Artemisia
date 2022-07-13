@@ -6,6 +6,7 @@ from . import views
 
 urlpatterns = [
     path("", views.index, name="index"),
+    path("lessons/<int:lesson_id>/", views.lesson, name="lesson"),
     path("register/", views.register, name="register"),
     path("login/", views.login_view, name="login"),
     path("logout/", views.logout_view, name="logout"),
@@ -37,5 +38,4 @@ urlpatterns = [
         ),
         name="password_reset_complete",
     ),
-    path("lesson/", views.lesson, name="lesson"),
 ]
