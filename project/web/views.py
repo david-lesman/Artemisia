@@ -40,19 +40,20 @@ def login_view(request):
 
         # Attempt to sign user in
         username = request.POST["username"]
-        email = request.POST["email"]
         password = request.POST["password"]
-        user = authenticate(request, username=username, email=email, password=password)
+        user = authenticate(request, username=username, password=password)
 
         # Check if authentication successful
         if user is not None:
             login(request, user)
-            return redirect(request.POST.get("next", ""))
+            if request.POST.get("next"):
+                return HttpResponseRedirect(request.POST["next"])
+            return HttpResponseRedirect(reverse("index"))
         else:
             return render(
                 request,
                 "web/login.html",
-                {"message": "Invalid email and/or password."},
+                {"message": "Invalid username and/or password."},
             )
     else:
         return render(request, "web/login.html")
