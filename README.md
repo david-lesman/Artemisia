@@ -6,7 +6,7 @@ The first thing to do is clone this repository:
 
 ```bash
 git clone https://github.com/dark-dave007/Artemisia
-cd help-ukrainians
+cd Artemisia/project
 ```
 
 Install dependencies:
@@ -24,6 +24,7 @@ python3 manage.py migrate
 ```
 
 Go into project/settings.py and configure the smtp settings:
+
 ```python3
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
@@ -44,7 +45,9 @@ If you would like to create an admin user, run the following:
 ```bash
 python3 manage.py createsuperuser
 ```
+
 And follow the instructions given by Django.
 
 ## Contributing
+
 Just make a pull request
