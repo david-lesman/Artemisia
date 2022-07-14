@@ -1,0 +1,29 @@
+{% extends 'web/layout.html' %}
+
+{% block title %}Test {{ test.id }}{% endblock title %}
+
+{% block body %}
+  <main class="container is-centered">
+    <form action="{% url 'test' 1 %}" method="post">
+      {% csrf_token %}
+      <h1 class="title has-text-centered">Test {{ test.id }}</h1>
+      {% for question in test.questions.all %}
+      <section class="section">
+        <h1 class="title is-4">{{ question.content }}</h1>
+        <div class="select">
+          <select name="{{ question.id }}" id="id_{{ question.id }}">
+            <option>Select an answer</option>
+            {% for choice in question.answers.all %}
+              <option>{{ choice.content }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </section>
+      <hr class="dashed">
+      {% endfor %}
+      <div class="buttons">
+        <input type="submit" class="button is-block is-success" value="Complete test">
+      </div>
+    </form>
+  </main>
+{% endblock body %}

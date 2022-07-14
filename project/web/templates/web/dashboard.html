@@ -4,6 +4,7 @@
 
 {% block body %}
   <main class="container">
+    {% if message %}<h1 class="has-text-centered title red">{{ message }}</h1>{% endif %}
     <div class="column is-half is-offset-one-quarter">
       {% comment %}For lesson in user.lessons{% endcomment %}
       <nav class="level">
@@ -42,13 +43,15 @@
       </nav>
       <nav class="level {% if 2 not in lessons or 3 not in lessons %}locked{% endif %}">
         <div class="level-item has-text-centered">
-          <div class="lesson-card level-up test">
-            <p class="heading">Test</p>
-            <figure class="image is64x64">
-              {% comment %}if user.lessons.part_1.locked{% endcomment %}
-              <span class="icon is-large"><i class="fas fa-lock{% if 4 in lessons %}-open{% endif %} fa-2x"></i></span>
-            </figure>
-          </div>
+          <a {% if 2 in lessons and 3 in lessons %}href="{% url 'test' 1 %}"{% endif %}>
+            <div class="lesson-card level-up test">
+              <p class="heading">Test</p>
+              <figure class="image is64x64">
+                {% comment %}if user.lessons.part_1.locked{% endcomment %}
+                <span class="icon is-large"><i class="fas fa-lock{% if 4 in lessons %}-open{% endif %} fa-2x"></i></span>
+              </figure>
+            </div>
+          </a>
         </div>
       </nav>
     </div>
@@ -73,7 +76,7 @@
           </div>
         </div>
       </nav>
-      <nav class="level">
+      <nav class="level {% if 5 not in lessons and 6 not in lessons %}locked{% endif %}">
         <div class="level-item has-text-centered">
           <div class="lesson-card {% if 7 in lessons %}completed{% endif %}">
             <p class="heading">Lesson 7</p>
@@ -83,7 +86,7 @@
           </div>
         </div>
       </nav>
-      <nav class="level">
+      <nav class="level {% if 7 not in lessons %}locked{% endif %}">
         <div class="level-item has-text-centered">
           <div class="lesson-card test">
             <p class="heading">Test</p>

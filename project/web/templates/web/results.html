@@ -1,0 +1,16 @@
+{% extends 'web/layout.html' %}
+{% load static %}
+
+{% block title %}Results{% endblock title %}
+
+{% block body %}
+  <main class="columns is-centered">
+    <div class="column is-half has-text-centered">
+      <figure class="login-banner">
+        <img src="{% static 'web/test-1.svg' %}">
+      </figure>
+      <h1 class="title">{{ message }}</h1>
+      <a href="{% url 'index' %}" class="button bg-dark-blue">Go Home</a>
+    </div>
+  </main>
+{% endblock body %}
