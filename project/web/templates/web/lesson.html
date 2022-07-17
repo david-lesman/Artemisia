@@ -7,8 +7,9 @@
   <main>
     <section class="section">
       <div class="columns">
-        <figure class="lesson-banner column is-4">
-          <img src="{% static lesson.image %}" alt="An educator teaching a class of students.">
+        <figure class="lesson-banner column">
+          <img src="{% static lesson.image %}">
+          {% comment %}If vid, iframe <iframe width="560" height="315" src="https://www.youtube.com/embed/QXdnEgf93As" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> {% endcomment %}
         </figure>
         <div class="column">
           <h1 class="hero-title red">{{ lesson.title }}</h1>

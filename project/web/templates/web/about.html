@@ -1,0 +1,48 @@
+{% extends 'web/layout.html' %}
+
+{% block title %}About Artemisia{% endblock title %}
+
+{% block body %}
+  <section class="section is-medium">
+    <h1 class="title">About us</h1>
+    <h2 class="subtitle">We are three students competing in the Uber Global Hackathon, and this is our project!</h2>
+    <nav class="level">
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">Student of the Year</p>
+          <p class="title">🤓</p>
+          <p class="title">David</p>
+        </div>
+      </div>
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">Athlete of the Year</p>
+          <p class="title">💪</p>
+          <p class="title">Shai</p>
+        </div>
+      </div>
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">High school graduate ‘22</p>
+          <p class="title">🥳</p>
+          <p class="title">Youri</p>
+        </div>
+      </div>
+    </nav>
+  </section>
+  <section class="section is-medium bg-beige">
+    <h1 class="title">What we're doing</h1>
+    <h2 class="subtitle">Artemisia is an interactive and responsive web app built using multiple technologies.</h2>
+    <h2 class="subtitle">Utilising fun and child-friendly graphics and minigames to educate children on Diabetes mellitus, we want to decrease the lack of knowledge and make kids act responsibly with and around those with this disease.</h2>
+  </section>
+  <section class="section is-medium">
+    <h1 class="title">Why we're doing this</h1>
+    <h2 class="subtitle">While searching for project ideas, we decided to reflect on our day-to-day problems. One of our team members, Youri, brought up that when he was diagnosed with type 1 Diabetes mellitus at the age of 8, it was difficult for him and the kids around him to understand what it meant.</h2>
+    <h2 class="subtitle">This problem inspired us to come up with our project <strong>Artemisia</strong>.</h2>
+  </section>
+  <hr class="dashed">
+  <footer class="footer has-text-centered bg-white">
+    <h1 class="title">Check it out!</h1>
+    <a href="{% url 'register' %}" class="button bg-beige">🫵</a>
+  </footer>
+{% endblock body %}

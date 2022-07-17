@@ -22,6 +22,10 @@ def index(request, message: str = None):
     return render(request, "web/index.html")
 
 
+def about(request):
+    return render(request, "web/about.html")
+
+
 @login_required(login_url="login")
 def lesson(request, lesson_id):
     lesson = Lesson.objects.get(pk=lesson_id)
