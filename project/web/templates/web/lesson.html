@@ -9,7 +9,7 @@
       <div class="columns">
         <figure class="lesson-banner column">
           {% if lesson.has_video %}
-          <iframe width="560" height="315" src="{{ lesson.image }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
+          <iframe class="yt-frame" src="{{ lesson.image }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
           {% else %}
             <img src="{% static lesson.image %}">
           {% endif %}

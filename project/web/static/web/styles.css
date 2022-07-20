@@ -90,10 +90,20 @@ body {
     line-height: 2.5rem;
 }
 
+.yt-frame {
+    width: 560px;
+    height: 315px;
+}
+
 @media only screen and (hover: none) and (pointer: coarse) {
     .lesson-txt {
         line-height: 2rem;
         font-size: 1.5rem;
+    }
+
+    .yt-frame {
+        width: auto;
+        height: auto;
     }
 }
 
