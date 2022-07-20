@@ -7,16 +7,36 @@ from django.urls import reverse
 
 from web.models import Test, User, Lesson
 
+
+def check_required_complete(request, object) -> bool:
+    lessons = request.user.completed.all()
+    tests = request.user.completed_tests.all()
+    lessons = [i.id for i in lessons]  # user completed lessons/tests
+    for test in tests:
+        lessons.append(4 * test.id)
+
+    for x in object.required_lessons.all():
+        if x.id not in lessons:
+            return False
+
+    return True
+
+
 # Create your views here.
 def index(request, message: str = None):
     if request.user.is_authenticated:
-        lessons = request.user.completed.all()
+        clessons = request.user.completed.all()
         tests = request.user.completed_tests.all()
-        lessons = [i.id for i in lessons]
+        lessons = [i.id for i in clessons]
         for test in tests:
             lessons.append(4 * test.id)
         return render(
-            request, "web/dashboard.html", {"lessons": lessons, "message": message}
+            request,
+            "web/dashboard.html",
+            {
+                "lessons": lessons,
+                "message": message,
+            },
         )
 
     return render(request, "web/index.html")
@@ -33,25 +53,9 @@ def lesson(request, lesson_id):
         lesson.completed.add(request.user)
         return HttpResponseRedirect(reverse("index"))
 
-    lessons = request.user.completed.all()
-    tests = request.user.completed_tests.all()
-    lessons = [i.id for i in lessons]
-    for test in tests:
-        lessons.append(4 * test.id)
-
-    # Can make simpler by adding required_lessons field in database, will do for now
-    if lesson.id in (2, 3):
-        if 1 not in lessons:
-            message = "You haven't completed the required lessons yet."
-            return index(request, message)
-    elif lesson.id in (5, 6):
-        if 4 not in lessons:
-            message = "You haven't completed the required lessons yet."
-            return index(request, message)
-    elif lesson.id == 7:
-        if [5, 6] not in lessons:
-            message = "You haven't completed the required lessons yet."
-            return index(request, message)
+    if not check_required_complete(request, lesson):
+        message = "You haven't completed the required lessons yet."
+        return index(request, message)
 
     chopped_text = [i.strip() for i in lesson.main_text.split("@")]  # @ is seperator
     return render(
@@ -69,32 +73,26 @@ def test(request, test_id):
             answer = request.POST.get(f"{i + 1}")  # Loop starts at 0, ids start at 1
             q = test.questions.get(pk=(i + 1))
             correct_answer = q.answers.get(correct=True)
-            print(answer, q, correct_answer)
-            if (
-                answer == correct_answer.content
-            ):  # Didn't answer question or got question wrong
+
+            if answer == correct_answer.content:
                 score += 1
-            else:
+            else:  # Didn't answer question or got question wrong
                 wrong_questions.append(q)
 
+        # Check if score is high enough
         if score / len(test.get_questions()) >= 0.75:
             test.completed.add(request.user)
             message = (
                 f"You scored {score / len(test.get_questions()) * 100}%. \n Well done!"
             )
         else:
-            message = (
-                f"You scored {score / len(test.get_questions()) * 100}%. Try again!"
-            )
+            message = f"You scored {score / len(test.get_questions()) * 100}%. Review your lessons and try again!"
 
         return render(request, "web/results.html", {"message": message})
 
-    lessons = request.user.completed.all()
-    lessons = [i.id for i in lessons]
-    for i in range(test.id * 4 - 1):
-        if i + 1 not in lessons:
-            message = "You haven't completed the required lessons yet."
-            return index(request, message)
+    if not check_required_complete(request, test):
+        message = "You haven't completed the required lessons yet."
+        return index(request, message)
 
     return render(request, "web/test.html", {"test": test})
 
