@@ -143,6 +143,14 @@ body {
 
 .locked { filter: grayscale(100%) opacity(0.7); }
 
+.btn-about:is(:hover, :focus) {
+    background: var(--dark-blue);
+    color: auto;
+    border-color: var(--dark-blue);
+    box-shadow: none;
+    transition-duration: .5s;
+}
+
 .dark-blue { color: var(--dark-blue); }
 
 .light-blue { color: var(--light-blue); }
