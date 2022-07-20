@@ -9,7 +9,7 @@
       <div class="columns">
         <figure class="lesson-banner column">
           {% if lesson.has_video %}
-          <iframe class="yt-frame" src="{{ lesson.image }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
+          <iframe class="yt-frame" src="{{ lesson.video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
           {% else %}
             <img src="{% static lesson.image %}">
           {% endif %}
@@ -30,6 +30,13 @@
       </div>
     </section>
     {% endfor %}
+    {% if lesson.has_video %}
+      <section class="section has-text-centered">
+        <figure class="lesson-banner column">
+            <img src="{% static lesson.image %}">
+        </figure>
+      </section>
+    {% endif %}
     <footer class="section">
       <div class="columns is-centered">
         <div class="column is-4">

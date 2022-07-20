@@ -24,6 +24,7 @@ class Lesson(models.Model):
     )
     completed = models.ManyToManyField(User, related_name="completed", blank=True)
     image = models.CharField(blank=True, max_length=128)
+    video = models.CharField(blank=True, max_length=128)
     icon = models.CharField(blank=True, max_length=32)
     has_video = models.BooleanField(blank=False, default=False)
 
